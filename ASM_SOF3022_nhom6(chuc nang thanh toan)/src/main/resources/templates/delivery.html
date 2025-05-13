@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css}"/>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <img th:src="@{/img/logo.png}" alt="" style="padding-top: 20px;" />
+      </div>
+      <div class="menu">
+        <li><a href="">NỮ</a>
+          <ul class="sub-menu">
+            <li><a href="">Hàng Mới Về</a></li>
+            <li><a href="">Collection</a></li>
+            <li><a href="">Áo</a>
+              <ul>
+                <li><a href="">Áo Sơ Mi</a></li>
+                <li><a href="">Áo Thun</a></li>
+                <li><a href="">Áo Khoác</a></li>
+                <li><a href="">Áo Vest</a></li>
+              </ul>
+            </li>
+            <li><a href="">Quần</a>
+              <ul>
+                <li><a href="">Quần Jean</a></li>
+                <li><a href="">Quần Lửng</a></li>
+                <li><a href="">Quần Dài</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="">NAM</a></li>
+        <li><a href="">TRẺ EM</a></li>
+        <li><a href="">SALE</a></li>
+        <li><a href="">BST</a></li>
+        <li><a href="">THÔNG TIN</a></li>
+      </div>
+      <div class="orthers">
+        <li>
+          <input type="text" placeholder="Tìm Kiếm" />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </li>
+        <li><i class="fa-solid fa-headphones"></i></li>
+        <li><i class="fa-solid fa-user"></i></li>
+        <li><i class="fa-solid fa-bag-shopping"></i></li>
+      </div>
+    </header>
+
+    <!-- Delivery Section -->
+    <section class="delivery">
+        <div class="container">
+            <div class="delivery-top-wrap">
+                <div class="delivery-top">
+                    <div class="delivery-top-cart delivery-top-item">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <div class="delivery-top-address delivery-top-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="delivery-top-payment delivery-top-item">
+                        <i class="fa-solid fa-money-bill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="delivery-content row">
+                <div class="delivery-content-left">
+                    <p>Vui lòng chọn địa chỉ giao hàng</p>
+                    <div class="delivery-content-left-dangnhap row">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <p>Đăng nhập (nếu bạn đã có tài khoản IVY)</p>
+                    </div>
+                    <div class="delivery-content-left-dangnhap row">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <p>Đăng ký (Đăng ký để tiếp tục mua hàng)</p>
+                    </div>
+                    <div class="delivery-content-left-khachle row">
+                        <input  type="checkbox" name="loaikhach" checked>
+                        <p><span style="font-weight: bold;">Khách lẻ</span>(nếu bạn không muốn lưu lại thông tin)</p>
+                    </div>
+                    <div class="delivery-content-left-form row">
+                        <div class="delivery-content-left-form-item">
+                            <label for="">Họ tên <span style="color: red;">*</span></label>
+                            <input type="text">
+                        </div>
+                        <div class="delivery-content-left-form-item">
+                            <label for="">Điện thoại <span style="color: red;">*</span></label>
+                            <input type="text">
+                        </div>
+                        <div class="delivery-content-left-form-item">
+                            <label for="">Tỉnh/TP <span style="color: red;">*</span></label>
+                            <input type="text">
+                        </div>
+                        <div class="delivery-content-left-form-item">
+                            <label for="">Quận/Huyện <span style="color: red;">*</span></label>
+                            <input type="text">
+                        </div>
+                        <div class="delivery-content-left-form-item">
+                            <label for="">Địa chỉ <span style="color: red;">*</span></label>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="delivery-content-left-form-item-Quan">
+                        <label for="">Ghi chú địa chỉ <span style="color: red;"></span></label>
+                        <input type="text">
+                    </div>
+                    <div class="delivery-content-left-button row">
+                        <a th:href="@{/cart/view}"><span>&#171;</span><p>Quay lại giỏ hàng</p></a>
+                        <button><a style="color: black;" th:href="@{/home/payment}">THANH TOÁN VÀ GIAO HÀNG</a></button>
+                    </div>
+                </div>
+                <div class="delivery-content-right">
+                    <table>
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            <th>Giảm giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                        <tr th:each="item : ${cart}">
+                            <td th:text="${item.sanPham.tenSanPham}"></td>
+                            <td>0%</td>
+                            <td th:text="${item.soLuong}"></td>
+                            <td><p th:text="${item.soLuong * item.sanPham.giaca}"></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="font-weight: bold;">Tạm tính</td>
+                            <td style="font-weight: bold;"><p th:text="${giohang.TongThanhTien}"></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="font-weight: bold;">Thuế VAT</td>
+                            <td style="font-weight: bold;"><p>0</p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="font-weight: bold;">Tổng thành tiền</td>
+                            <td style="font-weight: bold;"><p th:text="${giohang.TongThanhTien}"></p></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="app-container">
+        <p>Tải ứng dụng IVY moda</p>
+        <div class="app-google">
+          <img th:src="@{/img/appstore.png}" alt="">
+          <img th:src="@{/img/googleplay.png}" alt="">
+        </div>
+        <p>Nhận bản tin IVY moda</p>
+        <input type="text" placeholder="Nhập email của bạn ...">
+    </section>
+	 <div class="footer-top">
+    <li><a href=""><img th:src="@{/img/img-congthuong.png}" alt=""></a></li>
+    <li><a href="">Liên Hệ</a></li>
+    <li><a href=""></a>Tuyển Dụng</li>
+    <li><a href=""></a>Giới Thiệu</li>
+    <li>
+      <a href="" class="fab fa-facebook-f"></a>
+      <a href="" class="fab fa-twitter"></a>
+      <a href="" class="fab fa-youtube"></a>
+    </li>
+  </div>
+  <div class="footer-mid">
+    <p>
+      Công ty cổ phần Dự kim với số đăng ký kinh doanh: 0901383098 <br>
+      Địa chỉ đăng ký: Mizuki Park,Bình Hưng, Bình Chánh, TP.HCM <br>
+      Số điện thoại liên hệ: <strong>0901383098</strong>
+    </p>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 TranQuocCuong PS39522 </p>
+  </div>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>

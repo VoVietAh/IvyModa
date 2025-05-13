@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<!-- CSS -->
+		<link rel="stylesheet" th:href="@{/css/style.css}">
+
+		<!-- bootstrap -->
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+		<!-- font-awesome -->
+		<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}">
+</head>
+<body>
+    
+    <!--------------------------- cart --------------------------->
+	<div th:fragment="indexContent">
+		<section class="cart">
+		        <div class="container">
+		            <div class="cart-top-wrap">
+		                <div class="cart-top">
+		                    <div class="cart-top-cart cart-top-item">
+		                        <i class="fa-solid fa-cart-shopping "></i>
+		                    </div>
+		                    <div class="cart-top-address cart-top-item">
+		                        <i class="fa-solid fa-location-dot"></i>
+		                    </div>
+		                    <div class="cart-top-payment cart-top-item">
+		                        <i class="fa-solid fa-money-bill"></i>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="container">
+		            <div class="cart-content">
+		                <div class="cart-content-left">
+		                    <table >
+		                        <tr>
+		                            <th>Sản phẩm</th>
+		                            <th>Tên Sản phẩm</th>
+		                            <th>Màu</th>
+		                            <th>Size</th>
+		                            <th>SL</th>
+		                            <th>Thành tiền</th>
+		                            <th>Xóa</th>
+		                        </tr>
+								<tbody>
+								    <tr th:each="gioHangChiTiet : ${gioHangChiTietList}">
+								        <td>
+								            <img th:src="@{'/img/' + ${gioHangChiTiet.sanPhamTonKho.sanPham.hinhAnh}}" alt="Ảnh sản phẩm">
+								        </td>
+								        <td>
+								            <p th:text="${gioHangChiTiet.sanPhamTonKho.sanPham.tenSanPham}"></p>
+								        </td>
+								        <td>
+											<div class="cart_colorImg">
+												<img th:src="@{'/img/' + ${gioHangChiTiet.sanPhamTonKho.loaiMau.hinhAnh}}" alt="Ảnh màu">
+											</div>
+								        </td>
+								        <td>
+								            <p th:text="${gioHangChiTiet.sanPhamTonKho.id.sizeSanPham}"></p>
+								        </td>
+								        <td>
+								         <!-- <input type="number" th:value="${gioHangChiTiet.soLuong}" min="1" style="width: 30px;"> -->  
+											<p th:text="${gioHangChiTiet.soLuong}"></p>
+
+								        </td>
+								        <td>
+											<p th:text="${#numbers.formatInteger(gioHangChiTiet.sanPhamTonKho.sanPham.giaCa, 3, 'POINT')} + ' đ'"><sup>đ</sup></p> 
+
+								        </td>
+								        <td>
+											<div class="cart_form_delete">
+												<form th:action="@{/home/cart/delete}" method="post" class="delete-form">
+												    <input type="hidden" name="maSanPham" th:value="${gioHangChiTiet.sanPhamTonKho.id.maSanPham}" />
+												    <input type="hidden" name="maKH" th:value="${gioHangChiTiet.gioHang.maKH}" />
+												    <input type="hidden" name="size" th:value="${gioHangChiTiet.sanPhamTonKho.id.sizeSanPham}" />
+												    <input type="hidden" name="maMau" th:value="${gioHangChiTiet.sanPhamTonKho.id.maMau}" />
+												    
+												    <button type="submit"><i class="fa-solid fa-trash"></i></button>
+												</form>
+											</div>
+								        </td>
+								    </tr>
+								</tbody>
+		                    </table>
+		                </div>
+						
+		                <div class="cart-content-right">
+		                    <table style="width: 100%;">
+		                        <tr>
+		                            <th colspan="2">TỔNG TIỀN GIỎ HÀNG</th>
+		                        </tr>
+		                        <tr>
+		                            <td>TỔNG SẢN PHẨM: </td>
+		                            <td><p th:text="${soLuongSanPham}"></p></td>
+		                        </tr>
+		                        <tr>
+		                            <td>TỔNG TIỀN HÀNG: </td>
+		                            <td><p th:text="${#numbers.formatInteger(gioHang.tongThanhTien, 3, 'POINT')} + ' đ'"><sup>đ</sup></p> </td>
+		                        </tr>
+		                        <tr> 
+		                            <td>TẠM TÍNH</td>
+		                            <td><p style="color: black; font-weight: bold;" th:text="${#numbers.formatInteger(gioHang.tongThanhTien, 3, 'POINT')} + ' đ'"><sup>đ</sup></p></td>
+		                        </tr>
+		                    </table>
+  <!--							<div class="cart-content-right-text">
+						            <p>Bạn sẽ được miễn phí ship khi tổng giá trị đơn hàng trên 2.000.000đ</p>
+									<p style="color: red; font-weight: bold;">Mua thêm <span style="font-size: 18px;">200.000đ</span> để được freeship</p>
+						        </div>
+			 -->      
+								<form action="/home/cartegory" >
+									<div class="cart-content-right-button">
+										<button formaction="/home/cartegory">TIẾP TỤC MUA SẮM</button>
+										<button>THANH TOÁN </button>
+									</div>
+								</form>	
+		             <!-- 
+							   <div class="cart-content-right-dangnhap">
+						           <p>TÀI KHOẢN IVY</p> <br>
+						           <P>Hãy <a href="/home/login">đăng nhập</a> tài khoản IVY của bạn để tích điểm thành viên</P>
+						       </div>
+					 -->    
+		                </div>
+		            </div>
+		        </div>
+		    </section>
+	</div>
+
+ 
+    </body>
+    <script src="js/scirpt.js"></script>
+  </html>

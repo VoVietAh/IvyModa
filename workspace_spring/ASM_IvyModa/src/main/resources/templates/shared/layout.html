@@ -1,0 +1,125 @@
+
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="view(title, content)">
+<head>
+<title th:text="${title}">TITLE</title>
+
+
+<link rel="stylesheet" th:href="@{/css/style.css}"> 
+
+
+
+
+
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}">
+
+</head>
+
+<body>
+	<!-- header
+	
+		<header>
+			<nav th:replace="~{shared/menu}">MENU</nav>
+		</header>
+	 -->
+
+	
+	<div th:replace="~{shared/menu :: header}"></div>
+
+	
+	
+ <!-- <div th:replace="~{home/index :: indexContent}"></div> -->	
+	
+ <div th:replace="~{${content} :: indexContent}"></div>
+	
+	
+	<!-- footer -->
+	<footer>
+		<hr>
+	<th:block>
+		  <section class="app-container">
+		      <p>Tải ứng dụng IVY moda</p>
+		      <div class="app-google">
+		        <img th:src="@{/img/appstore.png}" alt="">
+		        <img th:src="@{/img/googleplay.png}" alt="">
+		      </div>
+		      <p>Nhận bản tin IVY moda</p>
+		      <input type="text" placeholder="Nhập email của bạn ...">
+		    </section>
+		  <div class="footer-top">
+		    <li><a href=""><img th:src="@{/img/img-congthuong.png}" alt=""></a></li>
+		    <li><a href="">Liên Hệ</a></li>
+		    <li><a href="">Tuyển Dụng</a></li>
+		    <li><a href="">Giới Thiệu</a></li>
+		    <li>
+		      <a href="" class="fab fa-facebook-f"></a>
+		      <a href="" class="fab fa-twitter"></a>
+		      <a href="" class="fab fa-youtube"></a>
+		    </li>
+		  </div>
+		<div class="footer-mid">
+		  <p>
+		    Công ty cổ phần Dự kim với số đăng ký kinh doanh: 0901383098 <br>
+		    Địa chỉ đăng ký: Mizuki Park,Bình Hưng, Bình Chánh, TP.HCM <br>
+		    Số điện thoại liên hệ: <strong>0901383098</strong>
+		  </p>
+		</div>
+		  <div class="footer-bottom">
+		    <p>&copy; 2024 TranQuocCuong PS39522 </p>
+		  </div>	</th:block>
+	</footer>    
+
+	<style>
+		
+		
+	</style>
+</body>
+<script>
+    const header = document.querySelector("header");
+  
+    window.addEventListener("scroll", function() {
+      let y = window.pageYOffset;
+      if(y > 0) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    });
+
+
+
+
+    const ImgPosition = document.querySelectorAll(".aspect-ratio-169 img");
+    const ImgContainer = document.querySelector('.aspect-ratio-169');
+    const dotItem = document.querySelectorAll(".dot");
+    let index = 0;
+    let imgNumber = ImgPosition.length;
+
+    ImgPosition.forEach(function (image, index) {
+      image.style.left = index * 100 + "%";
+      dotItem[index].addEventListener("click",function(){
+        Slider(index);
+      })
+    });
+
+    function ImgSlider(){
+      index++;
+      if(index>=imgNumber){
+        index=0;
+      }
+      Slider(index);
+    }
+
+    function Slider(index){
+      ImgContainer.style.left = "-" + index*100 + "%";
+      const dotActive = document.querySelector('.active');
+      dotActive.classList.remove("active");
+      dotItem[index].classList.add("active");
+    }
+
+    setInterval(ImgSlider,5000)
+  </script>
+  
+  <script th:src="@{/js/scirpt.js}"></script>
+
+
+</html>

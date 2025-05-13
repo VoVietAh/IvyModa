@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:text="${title}">TITLE</title>
+
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}">
+
+<style>
+	a{
+		text-decoration: none;
+		color: black;
+	}
+</style>
+
+</head>
+<body>
+	<div th:fragment="header">
+		<header>
+					<div class="logo">
+						<a th:href="@{/home/index}" >
+							<img th:src="@{/img/logo.png}" alt="" />
+
+						</a>
+						      </div>
+						      <div class="menu">
+						        <li>
+									<a th:href="@{/home/cartegory/{gioiTinh}(gioiTinh='false')}">NỮ</a>
+						          <ul class="sub-menu">
+						            <li><a href="">Hàng Mới Về</a></li>
+						            <li><a href="">Colection</a></li>
+						            <li>
+						              <a href="">Áo</a>
+						              <ul>
+						                <li><a href="">Áo Sơ Mi</a></li>
+						                <li><a href="">Áo Thun</a></li>
+						                <li><a href="">Áo Khoác</a></li>
+						                <li><a href="">Áo Vest</a></li>
+						              </ul>
+						            </li>
+						            <li>
+						              <a href="">Quần</a>
+						              <ul>
+						                <li><a href="">Quần Jean</a></li>
+						                <li><a href="">Quần Lửng</a></li>
+						                <li><a href="">Quần Dài</a></li>
+						              </ul>
+						            </li>
+						          </ul>
+						        </li>
+						        <li><a th:href="@{/home/cartegory/{gioiTinh}(gioiTinh='true')}">NAM</a></li>
+						        <li><a th:href="@{/home/cartegory}">TẤT CẢ</a></li>
+						        <li><a href="">SALE</a></li>
+						        <li><a href="">BST</a></li>
+						        <li><a th:href="@{/user/form}">THÔNG TIN</a></li>
+						      </div>
+						      <div class="orthers">
+						        <li>
+						          <input type="text" placeholder="Tìm Kiếm" />
+						          <i class="fa-solid fa-magnifying-glass"></i>
+						        </li>
+						        <li><i class="fa-solid fa-headphones"></i></li>
+						        <li><i class="fa-solid fa-user"></i></li>
+						        <li><a th:href="@{/home/cart/view}"><i class="fa-solid fa-bag-shopping"></i></a></li>
+								<li><a th:href="@{/user/logout}"> <i class="fa-solid fa-right-from-bracket"></i> </a></li>
+					</div>
+
+			      
+			    </header>
+		
+	</div>
+
+	
+	
+</body>
+</html>

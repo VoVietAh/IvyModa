@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	
+<!-- 
+		<link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css}">
+ -->
+	
+	
+	<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}">
+
+</head> 
+
+<body>
+ 
+<div th:fragment="indexContent">
+
+	
+	<!--------------------------- product --------------------------->
+	<section class="product"> 
+	    <div class="container">
+	        <div class="product-top row">
+	            <p>Trang Chủ</p> <span>&#10230;</span> <p th:text="${sanPham.tenSanPham}"></p>
+	        </div>
+	        <div class="product-content row">
+	            <div class="product-content-left row">
+	                <div class="product-content-left-big-img">
+						<img th:src="@{/img/} + ${sanPham.hinhAnh}" alt="Ảnh sản phẩm">
+	                </div>
+	            </div>
+	            <div class="product-content-right">
+	                <div class="product-content-right-product-name">
+	                   <!-- <h1> ÁO THUN CỔ TRÒN</h1> --> 
+					   <h1 th:text="${sanPham.tenSanPham}"> </h1>
+	                 <!-- <p>MSP: 123456</p> -->  
+					 	<p th:text="${sanPham.maSanPham}"></p>
+	                </div>
+	                <div class="product-content-right-product-price">
+	                 <!-- <p>1.500.000<sup>đ</sup></p> -->
+					 
+					 <p th:text="${#numbers.formatInteger(sanPham.giaCa, 3, 'POINT')} + ' đ'"><sup>đ</sup></p>      
+					 
+	                </div>
+	                <div class="product-content-right-product-color">
+						
+	                 <p><span style="font-weight: bold;">Màu Sắc</span>: <span th:text="${loaiMau.tenMau}"> Màu be </span> <span style="color: red;">*</span></p> 
+						
+					 <div class="product-content-right-product-color-img-content row">
+						<th:block th:each="loaiMau : ${loaiMauList}">
+							<div class="product-content-right-product-color-img ">
+							        <a th:href="@{ ${sanPham.maSanPham} + '-' + ${loaiMau.maMau}}">
+							            <img th:src="@{'/img/' + ${loaiMau.hinhAnh}}" alt="Ảnh sản phẩm">
+							        </a>
+							</div>
+						</th:block>
+
+					 </div>	                    
+	                </div>
+					<form action="/home/cart" method="post" >
+						
+						<input type="hidden" name="maSanPham" th:value="${sanPham.maSanPham}">
+						<input type="hidden" name="giaCa" th:value="${sanPham.giaCa}">
+						<input type="hidden" name="maMauUrl" th:value="${maMauUrl}">
+						
+						<div class="product-content-right-product-size">
+						    <p style="font-weight: bold;">Size</p>
+							<div class="size">
+								<select id="sizeSelect" name="size">
+									<option value="">-- Chọn size --</option>
+								    <option th:each="size : ${sizeList}" 
+									th:value="${size}" th:text="${size}"></option>
+								</select>
+							</div>
+						</div>
+						<br>
+
+						<div class="product-content-right-product-quantity">
+						    <p style="font-weight: bold;">Số Lượng:</p>
+						    <input type="number" min="0" value="1" name="soLuong">
+						</div>
+						<p style="color: red;">Vui lòng chọn size <span style="color: red;">*</span></p>
+						<div class="product-content-right-product-button">
+						    <button  ><i class="fa-solid fa-cart-shopping"></i> <p>MUA HÀNG</p></button>
+						</div>
+					</form>
+
+	                <div class="product-content-right-product-icon">
+	                    <div class="product-content-right-product-icon-item">
+	                        <i class="fa-solid fa-phone"></i><p>Hotline</p>
+	                    </div>
+	                    <div class="product-content-right-product-icon-item">
+	                        <i class="fa-regular fa-comment"></i><p>Chat</p>
+	                    </div>
+	                    <div class="product-content-right-product-icon-item">
+	                        <i class="fa-regular fa-envelope"></i><p>Mail</p>
+	                    </div>
+	                </div>
+	                <div class="product-content-right-product-QR">
+	                    <img th:src="@{img/appstore.png}" alt="">
+	                </div>
+	                <div class="product-content-right-bottom">
+	                    <div class="product-content-right-bottom-top">
+	                        <i class="fa-solid fa-sort-down"></i>
+	                    </div>
+	                    <div class="product-content-right-bottom-content-big">
+	                        <div class="product-content-right-bottom-content-title row ">
+	                            <div class="product-content-right-bottom-content-title-item chitiet">
+	                              <p>Chi tiết</p>
+	                            </div>
+	                            <div class="product-content-right-bottom-content-title-item baoquan">
+	                              <p>Bảo quản</p>
+	                            </div>
+	                            <div class="product-content-right-bottom-content-title-item">
+	                              <p>Tham khảo size</p>
+	                            </div>
+	                        </div>
+	                        <div class="product-content-right-bottom-content">
+	                          <div class="product-content-right-bottom-content-chitiet">
+	                            <p>*** đổ dữ liệu database chitiet ***</p>
+	                          </div>
+	                          <div class="product-content-right-bottom-content-baoquan">
+	                            <p>*** đổ dữ liệu database baoquan ***</p>
+	                          </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+
+	    </div>
+
+	</section>
+	<!--------------------------- product-related --------------------------->
+	<section class="product-related container">
+	    <div class="product-related-title">
+	        <p>Sản phẩm liên quan</p>
+	    </div>
+	    <div class="product-related-content row">
+	        <div class="product-related-item">
+	            <img th:src="@{/img/nu1.webp}" alt="">
+	            <h1> ÁO THUN CỔ TRÒN</h1>
+	            <p>MSP: 123456</p>
+	            <p>1.500.000<sup>đ</sup></p>
+	        </div>
+	        <div class="product-related-item">
+	          <img th:src="@{/img/nu2.webp}" alt="">
+	          <h1> ÁO THUN CỔ TRÒN</h1>
+	          <p>MSP: 123456</p>
+	          <p>1.500.000<sup>đ</sup></p>
+	      </div>
+	      <div class="product-related-item">
+	        <img th:src="@{/img/nu3.webp}" alt="">
+	        <h1> ÁO THUN CỔ TRÒN</h1>
+	        <p>MSP: 123456</p>
+	        <p>1.500.000<sup>đ</sup></p>
+	    </div>
+	    <div class="product-related-item">
+	      <img th:src="@{/img/nu4.webp}" alt="">
+	      <h1> ÁO THUN CỔ TRÒN</h1>
+	      <p>MSP: 123456</p>
+	      <p>1.500.000<sup>đ</sup></p>
+	  </div>
+	  <div class="product-related-item">
+	    <img th:src="@{/img/nu5.webp}" alt="">
+	    <h1> ÁO THUN CỔ TRÒN</h1>
+	    <p>MSP: 123456</p>
+	    <p>1.500.000<sup>đ</sup></p>
+	</div>
+
+	    </div>
+	</section>
+
+	
+</div>
+	
+
+
+<!--------------------------- footer --------------------------->
+  
+    </body>
+    <script src="js/scirpt.js"></script>
+  </html>

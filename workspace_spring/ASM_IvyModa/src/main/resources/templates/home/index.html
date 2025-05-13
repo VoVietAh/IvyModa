@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+	<!-- CSS -->
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+
+	<!-- bootstrap -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+	<!-- font-awesome -->
+	<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css}">
+  </head>
+  <body>
+    
+    <!--------------------------- slider --------------------------->
+
+	<div th:fragment="indexContent">
+	        <section id="slider">
+	            <div class="aspect-ratio-169">
+	                <img th:src="@{/img/slide.webp}" alt="" />
+	                <img th:src="@{/img/slide2.webp}" alt="" />
+	                <img th:src="@{/img/slide3.webp}" alt="" />
+	            </div>
+	            <div class="dot-container">
+	                <div class="dot active"></div>
+	                <div class="dot"></div>
+	                <div class="dot"></div>
+	            </div>
+	        </section>
+	</div>
+
+
+  </body>
+  <script>
+    const header = document.querySelector("header");
+  
+    window.addEventListener("scroll", function() {
+      let y = window.pageYOffset;
+      if(y > 0) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    });
+
+
+
+
+    const ImgPosition = document.querySelectorAll(".aspect-ratio-169 img");
+    const ImgContainer = document.querySelector('.aspect-ratio-169');
+    const dotItem = document.querySelectorAll(".dot");
+    let index = 0;
+    let imgNumber = ImgPosition.length;
+
+    ImgPosition.forEach(function (image, index) {
+      image.style.left = index * 100 + "%";
+      dotItem[index].addEventListener("click",function(){
+        Slider(index);
+      })
+    });
+
+    function ImgSlider(){
+      index++;
+      if(index>=imgNumber){
+        index=0;
+      }
+      Slider(index);
+    }
+
+    function Slider(index){
+      ImgContainer.style.left = "-" + index*100 + "%";
+      const dotActive = document.querySelector('.active');
+      dotActive.classList.remove("active");
+      dotItem[index].classList.add("active");
+    }
+
+    setInterval(ImgSlider,5000)
+  </script>
+</html>

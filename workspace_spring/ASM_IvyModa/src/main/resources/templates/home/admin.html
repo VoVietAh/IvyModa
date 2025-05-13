@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Trang Chủ Bán Hàng</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar (Menu trên Top) -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">IvyModa</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <button class="nav-link btn" data-bs-toggle="modal" data-bs-target="#orderModal">Quản Lý Đơn Hàng</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn" data-bs-toggle="modal" data-bs-target="#userModal">Quản Lý Người Dùng</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn" data-bs-toggle="modal" data-bs-target="#productModal">Quản Lý Sản Phẩm</button>
+                    </li>
+					<li class="nav-item">
+					    <button class="nav-link btn" data-bs-toggle="modal" data-bs-target="#categoryModal">Quản Lý Nhân Sự</button>
+					</li>
+                </ul>
+            </div>s
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <!-- Header -->
+            <div class="col-12">
+                <h1 class="text-center">Admin Dashboard - Trang Chủ Bán Hàng</h1>
+				
+				<div class="admin_addProduct">
+					<!-- Button to trigger modal -->
+					<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">
+					    Thêm Sản Phẩm
+					</button>
+				</div>
+				
+				-- khung tìm kiếm sản phẩm --
+				<br>
+				-- bảng sản phẩm ở đây --
+        	</div>
+
+        <!-- Modal Quản Lý Đơn Hàng -->
+        <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="orderModalLabel">Quản Lý Đơn Hàng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Table of Orders -->
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Mã Đơn Hàng</th>
+                                    <th scope="col">Khách Hàng</th>
+                                    <th scope="col">Ngày Đặt</th>
+                                    <th scope="col">Địa Chỉ Giao Hàng</th>
+                                    <th scope="col">Trạng Thái</th>
+                                    <th scope="col">Chi Tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1001</td>
+                                    <td>Nguyễn Văn A</td>
+                                    <td>2025-02-18</td>
+                                    <td>123 Đường ABC, Quận 1</td>
+                                    <td>Đang xử lý</td>
+                                    <td>
+                                        <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#orderDetailModal">Xem Chi Tiết</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Modal Quản Lý Người Dùng -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">Quản Lý Người Dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Thêm Người Dùng  -->
+                <div class="mb-3">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                        <i class="bi bi-person-plus"></i> Thêm Người Dùng
+                    </button>
+                </div>
+
+                <!-- Table of Users -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Họ và Tên</th>
+							<th scope="col">Email</th>
+                            <th scope="col">Số Điện Thoại</th>
+                            <th scope="col">Trạng Thái</th>
+                            <th scope="col">Chi Tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nguyễn Văn A</td>
+							<td>admin01@gmail.com</td>
+                            <td>0123456789</td>
+                            <td>Đang hoạt động</td>
+                            <td>
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#userDetailModal">Xóa</button>
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#userDetailModal">Sửa</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Thêm Người Dùng -->
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addUserModalLabel">Thêm Người Dùng Mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form Thêm Người Dùng -->
+                <form>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Tên Người Dùng</label>
+                        <input type="text" class="form-control" id="username" placeholder="Nhập tên người dùng">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fullname" class="form-label">Họ và Tên</label>
+                        <input type="text" class="form-control" id="fullname" placeholder="Nhập họ và tên">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Số Điện Thoại</label>
+                        <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại">
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Trạng Thái</label>
+                        <select class="form-select" id="status">
+                            <option value="active">Đang hoạt động</option>
+                            <option value="inactive">Đã khóa</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Lưu Người Dùng</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+       <!-- Modal Quản Lý Danh Mục -->
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="categoryModalLabel">Quản Lý Nhân Sự</h5>
+                <!-- Nút Thêm Danh Mục -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Thêm Danh Mục</button>
+
+                </div>
+                <!-- Table of Categories -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Mã Danh Mục</th>
+                            <th scope="col">Tên Danh Mục</th>
+                            <th scope="col">Chi Tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>C01</td>
+                            <td>Đồng hồ nam</td>
+                            <td>
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#categoryDetailModal">Xóa</button>
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#categoryDetailModal">Sửa</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Thêm Danh Mục -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCategoryModalLabel">Thêm Danh Mục Mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form Thêm Danh Mục -->
+                <form>
+                    <div class="mb-3">
+                        <label for="categoryCode" class="form-label">Mã Danh Mục</label>
+                        <input type="text" class="form-control" id="categoryCode" placeholder="Nhập mã danh mục">
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoryName" class="form-label">Tên Danh Mục</label>
+                        <!-- Thay input bằng select -->
+                        <select class="form-select" id="categoryName">
+                            <option selected>Chọn tên danh mục</option>
+                            <option value="1">Đồng hồ nam</option>
+                            <option value="2">Đồng hồ nữ</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Lưu Danh Mục</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Quản Lý Sản Phẩm -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Quản Lý Sản Phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">Thêm Sản Phẩm</button> 
+                </div>
+                <!-- Table of Products -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Mã Sản Phẩm</th>
+                            <th scope="col">Tên Sản Phẩm</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Danh Mục</th>
+                            <th scope="col">Chi Tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1001</td>
+                            <td>Sản phẩm A</td>
+                            <td>200,000 VNĐ</td>
+                            <td>Đồng hồ nam</td>
+                            <td>
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#productDetailModal">Xóa</button>
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#productDetailModal">Sửa</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Thêm Sản Phẩm (Add Product) -->
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProductModalLabel">Thêm Sản Phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Add Product Form -->
+				<form method="post" action="/home/admin/create" enctype="multipart/form-data">
+				    <div class="mb-3">
+				        <label for="productName" class="form-label">Tên Sản Phẩm</label>
+				        <input type="text" class="form-control" id="productName" name="tenSanPham" placeholder="Nhập tên sản phẩm" required>
+				    </div>
+
+				    <div class="mb-3">
+				        <label for="productCategory" class="form-label">Loại</label>
+				        <select class="form-select" id="productCategory" name="loaiSanPham" required>
+				            <option value="">Chọn danh mục</option>
+				            <option th:each="loai : ${loaiSanPhamList}" th:value="${loai.maLoai}" th:text="${loai.tenLoai}"></option>
+				        </select>
+				    </div>
+				    <div class="mb-3">
+				        <label for="productPrice" class="form-label">Giá</label>
+				        <input type="number" class="form-control" id="productPrice" name="giaSanPham" placeholder="Nhập giá sản phẩm" required>
+				    </div>
+					<div class="mb-3">
+					    <label class="form-label">Giới Tính</label><br>
+					    <input type="radio" id="male" name="gioiTinhSanPham" value="true" checked>
+					    <label for="male">Nam</label>
+
+					    <input type="radio" id="female" name="gioiTinhSanPham" value="false">
+					    <label for="female">Nữ</label>
+					</div>
+					<div class="mb-3">
+					    <label for="productQuantity" class="form-label">Số Lượng</label>
+					    <input type="number" class="form-control" id="productQuantity" name="soLuongSanPham" placeholder="Nhập số lượng sản phẩm" required>
+					</div>
+					<div class="mb-3">
+					    <label class="form-label">Size</label><br>
+					    
+					    <input type="checkbox" id="sizeS" name="size" value="S" checked>
+					    <label for="sizeS">S</label>
+					    
+					    <input type="checkbox" id="sizeM" name="size" value="M">
+					    <label for="sizeM">M</label>
+					    
+					    <input type="checkbox" id="sizeL" name="size" value="L">
+					    <label for="sizeL">L</label>
+						
+					    <input type="checkbox" id="sizeXL" name="size" value="XL">
+					    <label for="sizeXL">XL</label>
+					</div>
+					<div class="mb-3">
+					    <label class="form-label">Màu Sắc</label><br>
+					    
+					    <input type="checkbox" id="sizeS" name="mauSac" value="B05" checked >
+					    <label for="mautrang">Màu Trắng</label>
+					    
+					    <input type="checkbox" id="sizeM" name="mauSac" value="B03">
+					    <label for="maube">Màu Be</label>
+					    
+					</div>
+				    <div class="mb-3">
+				        <label for="productImage" class="form-label">Hình Ảnh</label>
+						<input type="file" class="form-control" id="productImage" name="hinhAnh" accept="image/*" required>
+				    </div>
+
+				    <button type="submit" class="btn btn-primary">Thêm Sản Phẩm</button>
+				</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Bootstrap 5 JS & Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

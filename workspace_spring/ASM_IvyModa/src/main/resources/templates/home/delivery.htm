@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+</head>
+<body>
+    
+    <!--------------------------- delivery --------------------------->
+	<div th:fragment="indexContent">
+		<section class="delivery">
+		       <div class="container">
+		           <div class="delivery-top-wrap">
+		               <div class="delivery-top">
+		                   <div class="delivery-top-cart delivery-top-item">
+		                       <i class="fa-solid fa-cart-shopping "></i>
+		                   </div>
+		                   <div class="delivery-top-address delivery-top-item">
+		                       <i class="fa-solid fa-location-dot"></i>
+		                   </div>
+		                   <div class="delivery-top-payment delivery-top-item">
+		                       <i class="fa-solid fa-money-bill"></i>
+		                   </div>
+		               </div>
+		           </div>
+		       </div>
+		       <div class="container">
+		           <div class="delivery-content row">
+		               <div class="delivery-content-left">
+		                   <p>Vui lòng chọn địa chỉ giao hàng</p>
+		                   <div class="delivery-content-left-dangnhap row">
+		                       <i class="fa-solid fa-right-to-bracket"></i>
+		                       <p>Đăng nhập (nếu bạn đã có tài khoản IVY)</p>
+		                   </div>
+		                   <div class="delivery-content-left-khachle row">
+		                       <input  type="radio" name="loaikhach" checked>
+		                       <p><span style="font-weight: bold;">Khách lẻ</span>(nếu bạn không muốn lưu lại thông tin)</p>
+		                   </div>
+		                   <div class="delivery-content-left-dangky row">
+		                       <input  type="radio" name="loaikhach" >
+		                       <p><span style="font-weight: bold;">Đăng ký</span>(tạo mới tài khoản với những thông tin bên dưới)</p>
+		                   </div>
+		                   <div class="delivery-content-left-form row">
+		                       <div class="delivery-content-left-form-item">
+		                           <label for="">Họ tên <span style="color: red;">*</span></label>
+		                           <input type="text">
+		                       </div>
+		                       <div class="delivery-content-left-form-item">
+		                           <label for="">Điện thoại <span style="color: red;">*</span></label>
+		                           <input type="text">
+		                       </div>
+		                       <div class="delivery-content-left-form-item">
+		                           <label for="">Tỉnh/TP <span style="color: red;">*</span></label>
+		                           <input type="text">
+		                       </div>
+		                       <div class="delivery-content-left-form-item">
+		                           <label for="">Quận/Huyện <span style="color: red;">*</span></label>
+		                           <input type="text">
+		                       </div>
+		                       <div class="delivery-content-left-form-item">
+		                           <label for="">Địa chỉ <span style="color: red;">*</span></label>
+		                           <input type="text">
+		                       </div>
+		                   </div>
+		                   <div class="delivery-content-left-form-item-Quan">
+		                       <label for="">Quận/Huyện <span style="color: red;">*</span></label>
+		                       <input type="text">
+		                   </div>
+		                   <div class="delivery-content-left-button row">
+		                       <a href=""><span>&#171;</span><p>Quay lại giỏ hàng</p></a>
+		                       <button>THANH TOÁN VÀ GIAO HÀNG</button>
+		                   </div>
+		               </div>
+		               <div class="delivery-content-right ">
+		                   <table>
+		                       <tr>
+		                           <th>Tên sản phẩm</th>
+		                           <th>Giảm giá </th>
+		                           <th>Số lượng</th>
+		                           <th>Thành tiền</th>
+		                       </tr>
+		                       <tr>
+		                           <td>áo polo blabla</td>
+		                           <td>-30%</td>
+		                           <td>1</td>
+		                           <td><p>500.000<sup>đ</sup></p></td>
+		                       </tr>
+		                       <tr>
+		                           <td>áo dài blabla</td>
+		                           <td>-20%</td>
+		                           <td>2</td>
+		                           <td><p>200.000<sup>đ</sup></p></td>
+		                       </tr>
+		                       <tr>
+		                           <td style="font-weight: bold;" colspan="3">Tạm tính</td>
+		                           <td style="font-weight: bold;"><p>500.000<sup>đ</sup></p></td>
+		                       </tr>
+		                       <tr>
+		                           <td style="font-weight: bold;" colspan="3">Thuế VAT</td>
+		                           <td style="font-weight: bold;"><p>50.000<sup>đ</sup></p></td>
+		                       </tr>
+		                       <tr>
+		                           <td style="font-weight: bold;" colspan="3">Tổng thành tiền</td>
+		                           <td style="font-weight: bold;"><p>550.000<sup>đ</sup></p></td>
+		                       </tr>
+		                   </table>
+		               </div>
+		           </div>
+		       </div>
+		   </section>
+	</div>
+  
+    </body>
+    <script src="js/scirpt.js"></script>
+  </html>

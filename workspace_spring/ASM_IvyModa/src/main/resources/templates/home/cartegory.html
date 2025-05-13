@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  </head>
+  <body>
+   
+
+<!--------------------------- cartegory --------------------------->
+<div th:fragment="indexContent">
+	<section class="cartegory">
+	        <div class="cartegory_container">
+	            <div class="cartegory_top row">
+	                <p>Trang Chủ</p> <span>&#10230; </span> <p>Nam</p> <span>&#10230;</span> <p>Hàng Nam Mới Về</p>
+	            </div>
+	        </div>
+	        <div class="cartegory_container">
+	            <div class="row">
+	                <div class="cartegory_left">
+	                    <ul>
+	                        <li class="cartegory_left_li"><a href="#">NỮ</a>
+	                            <ul>
+	                                <li><a href="">HÀNG NỮ MỚI VỀ</a></li>
+	                                <li><a href="">BEYOND TRENDY</a></li>
+	                                <li><a href="">JEANS FOR JOY</a></li>
+	                                <li><a href="">QUẦN JEANS NỮ</a></li>
+	                            </ul>
+	                        </li>
+	                        <li class="cartegory_left_li"><a href="#">NAM</a>
+	                            <ul>
+	                                <li><a href="">HÀNG NAM MỚI VỀ</a></li>
+	                                <li><a href="">BEYOND TRENDY</a></li>
+	                                <li><a href="">JEANS FOR JOY</a></li>
+	                                <li><a href="">QUẦN JEANS NAM</a></li>
+	                            </ul>
+	                        </li>
+	                        <li class="cartegory_left_li"><a href="">TRẺ EM</a></li>
+	                        <li class="cartegory_left_li"><a href="">BỘ SƯU TẬP</a></li>
+	                        <li class="cartegory_left_li"><a href="">ĐỒ BẢO HỘ</a></li>
+	                    </ul>
+
+	                </div>
+	                <div class="cartegory_right row">
+	                    <div class="cartegory_right_top_item">
+	                        <p>HÀNG NAM MỚI VỀ</p>
+	                    </div>
+	                    <div class="cartegory_right_top_item">
+	                        <button><span>Bộ Lọc</span> <i class="fa-solid fa-sort-down"></i> </button>
+	                    </div>
+	                    <div class="cartegory_right_top_item">
+	                        <select name="" id="">
+	                            <option value="">Sắp Xếp</option>
+	                            <option value="">Giá Tăng</option>
+	                            <option value="">Giá Giảm</option>
+	                        </select>
+	                    </div>
+	                    <div class="cartegory_right_content row">
+							<div class="cartegory_right_content_item" th:each="sanPham : ${sanPhamList}">
+								<!--<a th:href="@{/sanpham/{id}(id=${product.id})}"> -->	
+									<a th:href="@{/home/product/{maSanPham}-{maMau}(maSanPham=${sanPham.maSanPham}, maMau=B05 )}">
+									    <img th:src="@{/img/} + ${sanPham.hinhAnh}" alt="Ảnh sản phẩm">
+									</a>
+							        <h1 th:text="${sanPham.tenSanPham}">SẢN PHẨM MỚI MỘT</h1>
+							  <p th:text="${#numbers.formatInteger(sanPham.giaCa, 3, 'POINT')} + ' đ'">790.000<sup>đ</sup></p>      
+							</div>
+	                    </div>
+	                    <div class="cartegory_right_bottom row">
+	                        <div class="cartegory_right_bottom_item">
+	                            <p>Hiển Thị 2 <span>|</span>4 Sản Phẩm</p>
+	                        </div>
+	                        <div class="cartegory_right_bottom_item">
+	                            <p><span>&#171;<span>1 2 3 4 5</span>&#171;</span>Trang Cuối</p>
+	                        </div>
+	                    </div>
+
+
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+	
+</div>
+
+    
+
+
+
+
+
+    </body>
+    <script src="js/scirpt.js"></script>
+  </html>
